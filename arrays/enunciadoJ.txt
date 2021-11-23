@@ -1,0 +1,39 @@
+J - Top 3
+Escreva um programa que leia o nome e salário dos funcionários de uma empresa.
+A leitura termina quando for inserido "FIM" como o nome de um funcionário.
+ 
+De seguida, calcule e mostre o top três (3) dos funcionários mais bem pagos. Caso haja igualdade de vencimentos, a escolha deve seguir a ordenação alfabética crescente do nome.
+
+Mostre em linhas separadas o nome e salário de cada funcionário, ordenados de forma decrescente do salário, no seguinte formato:
+"#<ordem>:<nome>:<salario>"
+
+<ordem> indica o lugar no top.
+<nome> nome do funcionário
+<salario> valor do salário
+
+Exemplo1:
+Entrada
+Saída
+Ana Anacleta
+1000
+Berta Barata
+1000
+Carla Costa
+100
+Luisa Lima
+125
+Elsa Eira
+5000
+Francisca Fé
+123
+Gloria Gomes
+55
+Hercilia Hora
+250
+FIM
+
+#1:Elsa Eira:5000
+#2:Ana Anacleta:1000
+#3:Berta Barata:1000
+
+

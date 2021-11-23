@@ -1,0 +1,22 @@
+M - Algarismos diferentes
+Escreva um programa que leia um conjunto números inteiros positivos e visualize, para cada um, quantos algarismos diferentes o constituem.
+A leitura termina quando for inserido um número negativo.
+
+Os elementos do resultado devem ser visualizados em linhas separadas, no seguinte formato:
+<nºinserido>:<algarismos diferentes>
+
+Exemplo1:
+Entrada
+Saída
+12123518
+2222
+400
+12345
+-1
+
+12123518:5
+2222:1
+400:2
+12345:5
+
+

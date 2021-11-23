@@ -1,0 +1,22 @@
+N - Diagonais
+Escreva um programa que leia uma matriz quadrada de números inteiros e escreva os valores correspondentes às várias diagonais com o mesmo sentido da diagonal principal e da direita para a esquerda.
+O programa deve ler um valor N (1 < N <= 20) correspondendo à dimensão da matriz. De seguida,  deve ler N linhas contendo, cada uma, N números separados por espaços.
+
+Os elementos de cada diagonal devem ser visualizados em linhas separadas e na seguinte forma:
+[a]...[z]
+
+Exemplo1:
+Entrada
+Saída
+3
+10 20 30
+50 60 70
+90 100 110
+
+[30]
+[20][70]
+[10][60][110]
+[50][100]
+[90]
+
+

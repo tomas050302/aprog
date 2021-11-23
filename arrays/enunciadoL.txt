@@ -1,0 +1,26 @@
+L - Vizinhos
+Escreva um programa que leia um conjunto números inteiros e visualize todos os números maiores que os seus vizinhos.
+Um número é maior que os seus vizinhos quando é, simultaneamente, maior que o número anterior e que o número seguinte.
+A leitura termina quando for inserido um número negativo. O tamanho do conjunto de números nunca será superior a 30.
+
+Os elementos do resultado devem ser visualizados em linhas separadas.
+
+8, 2, 4, 1, 6, 12, 5, 9, -1
+
+Exemplo1:
+Entrada
+Saída
+8
+2
+4
+1
+6
+12
+5
+9
+-1
+
+4
+12
+
+

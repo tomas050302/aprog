@@ -1,0 +1,17 @@
+Ana Anacleta
+1000
+Berta Barata
+1000
+Carla Costa
+100
+Luisa Lima
+125
+Elsa Eira
+5000
+Francisca Fé
+123
+Gloria Gomes
+55
+Hercilia Hora
+250
+FIM

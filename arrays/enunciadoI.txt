@@ -1,0 +1,68 @@
+Considere um prédio de apartamentos com 3 entradas e 4 pisos, completamente ocupados.
+Faça um programa modular que leia o nome do proprietário de cada um dos apartamentos.
+De seguida, o programa deve ler um dado nome inserido pelo utilizador, procurar e mostrar para esse nome qual é a respetiva entrada e piso, no seguinte formato:
+"nome=<nome>"
+"entrada=<nº da entrada>"
+"piso=<nº do piso>"
+
+Se existirem múltiplas soluções (vários proprietários com o mesmo nome), deve indicar todas as possibilidades.
+Caso não exista um proprietário com esse nome no prédio, deve imprimir a mensagem “Nao mora no predio".
+
+Exemplo:
+piso	
+
+
+3	 Luisa Lima       Hercilia Hora	  Maria Mota
+2	 Carla Costa	    Gloria Gomes	  Luisa Lima
+1	 Berta Barata 	  Francisca Fé    Joana Jales
+0	 Ana Anacleta 	  Elsa Eira      	Ines Iris
+
+         0	             1           	2
+
+
+entrada	
+
+Exemplo1: (procurar Luisa Lima)
+Entrada
+Ana Anacleta
+Berta Barata
+Carla Costa
+Luisa Lima
+Elsa Eira
+Francisca Fé
+Gloria Gomes
+Hercilia Hora
+Ines Iris
+Joana Jales
+Luisa Lima
+Maria Mota
+Luisa Lima
+
+Saída
+nome=Luisa Lima
+entrada=0
+piso=3
+nome=Luisa Lima
+entrada=2
+piso=2
+
+
+Exemplo2: (procurar Zita Zulmira)
+Entrada
+Saída
+Ana Anacleta
+Berta Barata
+Carla Costa
+Luisa Lima
+Elsa Eira
+Francisca Fé
+Gloria Gomes
+Hercilia Hora
+Ines Iris
+Joana Jales
+Luisa Lima
+Maria Mota
+Zita Zulmira
+
+Nao mora no predio
+
