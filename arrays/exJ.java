@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class exJ {
@@ -7,8 +6,9 @@ public class exJ {
   static final int SALARY_INDEX = 0;
   static final int NAME_INDEX = 1;
   static final int MAX_VALUES = 100;
+  static final int TOP = 3;
 
-  private static int getData(String[][] employeesData) {
+  private static int getData(String[] employeesNames, double[] employeesSalaries) {
     int nOfEmployees = 0;
     String employeeName = "";
 
@@ -16,9 +16,9 @@ public class exJ {
       employeeName = scanner.nextLine();
 
       if (!employeeName.equals("FIM")) {
-        String employeeSalary = scanner.nextLine();
-        employeesData[nOfEmployees][NAME_INDEX] = employeeName;
-        employeesData[nOfEmployees][SALARY_INDEX] = employeeSalary;
+        double employeeSalary = Double.parseDouble(scanner.nextLine());
+        employeesNames[nOfEmployees] = employeeName;
+        employeesSalaries[nOfEmployees] = employeeSalary;
 
         nOfEmployees++;
       }
@@ -27,23 +27,23 @@ public class exJ {
     return nOfEmployees;
   }
 
-  private static int getTopSalaryIndex(String[][] employeesData) {
+  private static int getTopSalaryIndex(String[] employeesNames, double[] employeesSalaries, int nOfEmployees) {
     int topSalaryIndex = 0;
-    double topEmployeeSalary = Double.parseDouble(employeesData[0][SALARY_INDEX]);
-    String topEmployeeName = employeesData[0][NAME_INDEX];
+    double topEmployeeSalary = employeesSalaries[0];
+    String topEmployeeName = employeesNames[0];
 
-    for (int i = 1; i < employeesData.length; i++) {
-      double employeeSalary = Double.parseDouble(employeesData[i][SALARY_INDEX]);
+    for (int i = 1; i < nOfEmployees; i++) {
+      double employeeSalary = employeesSalaries[i];
 
       if (employeeSalary > topEmployeeSalary) {
         topSalaryIndex = i;
-        topEmployeeName = employeesData[i][NAME_INDEX];
-        topEmployeeSalary = Double.parseDouble(employeesData[i][SALARY_INDEX]);
+        topEmployeeName = employeesNames[i];
+        topEmployeeSalary = employeesSalaries[i];
       } else if (employeeSalary == topEmployeeSalary) {
-        if (employeesData[i][NAME_INDEX].compareTo(topEmployeeName) < 0) {
+        if (employeesNames[i].compareTo(topEmployeeName) < 0) {
           topSalaryIndex = i;
-          topEmployeeName = employeesData[i][NAME_INDEX];
-          topEmployeeSalary = Double.parseDouble(employeesData[i][SALARY_INDEX]);
+          topEmployeeName = employeesNames[i];
+          topEmployeeSalary = employeesSalaries[i];
         }
       }
     }
@@ -51,11 +51,11 @@ public class exJ {
     return topSalaryIndex;
   }
 
-  private static String[][] removeIndexFromArray(String[][] array, int index) {
-    String[][] finalArray = new String[array.length - 1][2];
+  private static String[] removeIndexFromArray(String[] array, int index, int nOfEmployees) {
+    String[] finalArray = new String[nOfEmployees];
     int j = 0;
 
-    for (int i = 0; i < array.length; i++) {
+    for (int i = 0; i < nOfEmployees; i++) {
       if (i != index) {
         finalArray[j] = array[i];
         j++;
@@ -65,31 +65,47 @@ public class exJ {
     return finalArray;
   }
 
-  private static String[][] getTopEmployees(String[][] employees, int nOfEmployees) {
-    final int TOP = 3;
-    String[][] topEmployees = new String[TOP][2];
-    String[][] tempEmployees = Arrays.copyOf(employees, nOfEmployees);
+  private static double[] removeIndexFromArray(double[] array, int index, int nOfEmployees) {
+    double[] finalArray = new double[nOfEmployees];
+    int j = 0;
 
-    for (int i = 0; i < TOP; i++) {
-      int topSalaryIndex = getTopSalaryIndex(tempEmployees);
-
-      topEmployees[i] = tempEmployees[topSalaryIndex];
-
-      tempEmployees = removeIndexFromArray(tempEmployees, topSalaryIndex);
+    for (int i = 0; i < nOfEmployees; i++) {
+      if (i != index) {
+        finalArray[j] = array[i];
+        j++;
+      }
     }
 
-    return topEmployees;
+    return finalArray;
+  }
+
+  private static void getTopEmployees(String[] employeesNames, double[] employeesSalaries, String[] topEmployeesNames,
+      double[] topEmployeesSalaries, int nOfEmployees) {
+
+    for (int i = 0; i < TOP; i++) {
+      int topSalaryIndex = getTopSalaryIndex(employeesNames, employeesSalaries, nOfEmployees);
+
+      topEmployeesNames[i] = employeesNames[topSalaryIndex];
+      topEmployeesSalaries[i] = employeesSalaries[topSalaryIndex];
+
+      employeesNames = removeIndexFromArray(employeesNames, topSalaryIndex, nOfEmployees);
+      employeesSalaries = removeIndexFromArray(employeesSalaries, topSalaryIndex, nOfEmployees);
+    }
   }
 
   public static void main(String[] args) {
-    String[][] employeesData = new String[MAX_VALUES][2];
+    String[] employeesNames = new String[MAX_VALUES];
+    double[] employeesSalaries = new double[MAX_VALUES];
 
-    int nOfEmployees = getData(employeesData);
+    int nOfEmployees = getData(employeesNames, employeesSalaries);
 
-    String[][] topEmployees = getTopEmployees(employeesData, nOfEmployees);
+    String[] topEmployeesNames = new String[TOP];
+    double[] topEmployeesSalaries = new double[TOP];
 
-    for (int i = 0; i < topEmployees.length; i++) {
-      System.out.printf("#%d:%s:%s%n", i + 1, topEmployees[i][NAME_INDEX], topEmployees[i][SALARY_INDEX]);
+    getTopEmployees(employeesNames, employeesSalaries, topEmployeesNames, topEmployeesSalaries, nOfEmployees);
+
+    for (int i = 0; i < topEmployeesNames.length; i++) {
+      System.out.printf("#%d:%s:%s%n", i + 1, topEmployeesNames[i], topEmployeesSalaries[i]);
     }
   }
 }

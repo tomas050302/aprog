@@ -12,24 +12,30 @@ public class exH {
     return sequence;
   }
 
-  private static void performAction(int[] sequence, String action) {
-    if (action.equals("direita")) {
-      int temp = sequence[sequence.length - 1];
+  private static void rotateRight(int[] arr) {
+    int temp = arr[arr.length - 1];
 
-      for (int i = sequence.length - 1; i >= 1; i--) {
-        sequence[i] = sequence[i - 1];
-      }
-
-      sequence[0] = temp;
-    } else if (action.equals("esquerda")) {
-      int temp = sequence[0];
-
-      for (int i = 0; i < sequence.length - 1; i++) {
-        sequence[i] = sequence[i + 1];
-      }
-
-      sequence[sequence.length - 1] = temp;
+    for (int i = arr.length - 1; i >= 1; i--) {
+      arr[i] = arr[i - 1];
     }
+    arr[0] = temp;
+  }
+
+  private static void rotateLeft(int[] arr) {
+    int temp = arr[0];
+
+    for (int i = 0; i < arr.length - 1; i++) {
+      arr[i] = arr[i + 1];
+    }
+
+    arr[arr.length - 1] = temp;
+  }
+
+  private static void performAction(int[] sequence, String action) {
+    if (action.equals("direita"))
+      rotateRight(sequence);
+    else if (action.equals("esquerda"))
+      rotateLeft(sequence);
   }
 
   private static void printSequence(int[] sequence) {

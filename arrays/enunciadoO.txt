@@ -1,0 +1,27 @@
+O - Quadrantes
+Escreva um programa que leia uma matriz quadrada de números inteiros e visualize a soma dos números de cada um dos seus quadrantes.
+Se dividir-mos ao meio uma matriz na vertical e na horizontal obtemos 4 quadrantes (q1, q2, q3, q4) na seguinte ordem:
+q2
+q1
+q3
+q4
+
+Cada quadrante possui elementos próprios, não partilhados com outros quadrantes.
+
+O programa deve ler um valor N correspondendo à dimensão da matriz (1 < N <= 20). De seguida,  deve ler N linhas contendo, cada uma, N números separados por espaços.
+
+No final deve ser visualizado o valor dos 4 quadrantes da seguinte forma:
+[q2][q1]
+[q3][q4]
+
+Exemplo1:
+Entrada
+Saída
+4
+10 20 30 40
+50 60 70 10
+90 100 110 1
+1 2 3 4
+
+[140][150]
+[193][118]

@@ -1,5 +1,9 @@
 ana
-150.5
+1000
 berta
-500.7
+500
+carla
+1200
+daniela
+5000
 fim

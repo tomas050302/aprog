@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class exD {
   static Scanner scanner = new Scanner(System.in);
+  static final int MAX_GRADE = 20;
 
   private static int[] readGrades(int nOfStudents) {
     int[] grades = new int[nOfStudents];
@@ -25,7 +26,7 @@ public class exD {
   }
 
   private static void showGradeFrequency(int[] grades) {
-    for (int i = 0; i <= 20; i++) {
+    for (int i = 0; i <= MAX_GRADE; i++) {
       int frequencyOfGrade = getFrequencyOfGrade(i, grades);
 
       System.out.printf("%d %d%n", i, frequencyOfGrade);
@@ -33,7 +34,6 @@ public class exD {
   }
 
   public static void main(String[] args) {
-
     int nOfStudents = scanner.nextInt();
 
     int[] grades = readGrades(nOfStudents);

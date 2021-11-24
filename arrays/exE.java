@@ -1,12 +1,9 @@
 import java.util.Scanner;
 
 public class exE {
-  static final int NAME_INDEX = 0;
-  static final int SALARY_INDEX = 1;
+  static Scanner scanner = new Scanner(System.in);
 
-  private static int readEmployeesData(String[][] employeesData) {
-    Scanner scanner = new Scanner(System.in);
-
+  private static int readEmployeesData(String[] employeesNames, double[] employeesSalaries) {
     int currentNumberOfEmployees = 0;
     String employeeName = "";
 
@@ -14,10 +11,10 @@ public class exE {
       employeeName = scanner.nextLine();
 
       if (!employeeName.equals("fim")) {
-        String employeeSalary = scanner.nextLine();
+        double employeeSalary = Double.parseDouble(scanner.nextLine());
 
-        employeesData[currentNumberOfEmployees][NAME_INDEX] = employeeName;
-        employeesData[currentNumberOfEmployees][SALARY_INDEX] = employeeSalary;
+        employeesNames[currentNumberOfEmployees] = employeeName;
+        employeesSalaries[currentNumberOfEmployees] = employeeSalary;
         currentNumberOfEmployees++;
 
       }
@@ -27,43 +24,33 @@ public class exE {
     return currentNumberOfEmployees;
   }
 
-  private static double[] getSalaries(String[][] employeesData, int nOfEmployees) {
-    double[] salaries = new double[nOfEmployees];
-
-    for (int i = 0; i < nOfEmployees; i++)
-      salaries[i] = Double.parseDouble(employeesData[i][SALARY_INDEX]);
-
-    return salaries;
-  }
-
-  private static double getAverageSalary(double[] salaries) {
+  private static double getAverageSalary(double[] salaries, int nOfEmployees) {
     double sum = 0;
 
-    for (double salary : salaries)
-      sum += salary;
+    for (int i = 0; i < nOfEmployees; i++) {
+      sum += salaries[i];
+    }
 
-    return sum / salaries.length;
+    return sum / nOfEmployees;
   }
 
-  static void showResults(String[][] employeesData, double avgSalary, int nOfEmployees) {
+  static void showResults(String[] employeesNames, double[] employeesSalaries, double avgSalary, int nOfEmployees) {
     System.out.printf("%.1f%n", avgSalary);
 
-    for (int i = 0; i < nOfEmployees; i++) {
-      if (Double.parseDouble(employeesData[i][SALARY_INDEX]) < avgSalary)
-        System.out.println(employeesData[i][NAME_INDEX]);
-
-    }
+    for (int i = 0; i < nOfEmployees; i++)
+      if (employeesSalaries[i] < avgSalary)
+        System.out.println(employeesNames[i]);
   }
 
   public static void main(String[] args) {
     final int MAX_OF_EMPLOYEES = 20;
-    String[][] employeesData = new String[MAX_OF_EMPLOYEES][2];
+    String[] employeesNames = new String[MAX_OF_EMPLOYEES];
+    double[] employeesSalaries = new double[MAX_OF_EMPLOYEES];
 
-    int nOfEmployees = readEmployeesData(employeesData);
+    int nOfEmployees = readEmployeesData(employeesNames, employeesSalaries);
 
-    double[] salaries = getSalaries(employeesData, nOfEmployees);
-    double avgSalary = getAverageSalary(salaries);
+    double avgSalary = getAverageSalary(employeesSalaries, nOfEmployees);
 
-    showResults(employeesData, avgSalary, nOfEmployees);
+    showResults(employeesNames, employeesSalaries, avgSalary, nOfEmployees);
   }
 }
