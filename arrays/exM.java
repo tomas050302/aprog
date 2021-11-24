@@ -1,25 +1,23 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class exM {
   static Scanner scanner = new Scanner(System.in);
+  static final int MAX_NUMBERS = 100;
 
-  private static int[] readNumbers() {
-    final int MAX_NUMBERS = 100;
-    int[] numbers = new int[MAX_NUMBERS];
+  private static int readNumbers(int[] numbers) {
     int n;
     int i = 0;
 
     do {
       n = scanner.nextInt();
-      if (n > 0) {
+      if (n >= 0) {
         numbers[i] = n;
 
         i++;
       }
-    } while (i < MAX_NUMBERS && n > 0);
+    } while (i < MAX_NUMBERS && n >= 0);
 
-    return numbers;
+    return i;
   }
 
   private static boolean contains(String[] arr, String needle) {
@@ -51,9 +49,11 @@ public class exM {
   }
 
   public static void main(String[] args) {
-    int[] numbers = readNumbers();
+    int[] numbers = new int[MAX_NUMBERS];
 
-    for (int i = 0; i < numbers.length; i++) {
+    int nOfNumbers = readNumbers(numbers);
+
+    for (int i = 0; i < nOfNumbers; i++) {
       int nOfDistinctDigits = getNOfDistinctNumbers(numbers[i]);
 
       System.out.printf("%d:%d%n", numbers[i], nOfDistinctDigits);

@@ -54,8 +54,10 @@ public class exH {
     do {
       action = scanner.nextLine();
       if (!action.equals("sair")) {
-        performAction(sequence, action);
-        printSequence(sequence);
+        if (action.equals("direita") || action.equals("esquerda")) {
+          performAction(sequence, action);
+          printSequence(sequence);
+        }
       }
     } while (!action.equals("sair"));
   }
