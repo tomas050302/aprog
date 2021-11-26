@@ -170,10 +170,10 @@ public class TrabalhoPratico {
   }
 
   private static int getBestDirtRatioToFloodCube(int[][] matrix) {
-    int minMobilizedDirt = Integer.MAX_VALUE; // TODO Refactor
+    int minMobilizedDirt = calculateMobilizedDirtToFloodCube(matrix, 0, 0);
     int maxX = 0, maxY = 0;
 
-    // TODO: Optimize this algorithm
+    // TODO: Refactor because (0,0) is checked twice
     for (int i = 0; i < matrix.length - CUBE_SIZE + 1; i++) {
       for (int j = 0; j < matrix[0].length - CUBE_SIZE + 1; j++) {
         int mobilizedDirt = calculateMobilizedDirtToFloodCube(matrix, i, j);
