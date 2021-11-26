@@ -148,24 +148,23 @@ public class TrabalhoPratico {
     return -1;
   }
 
+  private static int calculateCellMobilizedDirt(int[][] matrix, int x, int y) {
+    int cellMobilizedDirt = 0;
+
+    if (isFlooded(matrix[x][y]))
+      return cellMobilizedDirt = matrix[x][y] + CUBE_SIZE;
+    else
+      cellMobilizedDirt = matrix[x][y] + CUBE_SIZE;
+
+    return Math.abs(cellMobilizedDirt);
+  }
+
   private static int calculateMobilizedDirtToFloodCube(int[][] matrix, int x, int y) {
-    int mobilizedDirt = Math.abs(matrix[x][y]);
+    int mobilizedDirt = 0;
 
-    // Sum first line
-    // TODO Refactor
-    for (int j = y + 1; j < y + CUBE_SIZE; j++)
-      mobilizedDirt += Math.abs(matrix[x][j] - CUBE_SIZE * (matrix[x][j] / Math.abs(matrix[x][j])));
-
-    // Sum next lines
-    for (int i = x + 1; i < x + CUBE_SIZE; i++) {
-      for (int j = y; j < y + CUBE_SIZE; j++) {
-        // TODO
-        if (isFlooded(matrix[i][j]))
-          mobilizedDirt += CUBE_SIZE - Math.abs(matrix[i][j]);
-        else
-          mobilizedDirt -= matrix[i][j] + CUBE_SIZE;
-      }
-    }
+    for (int i = x; i < x + CUBE_SIZE; i++)
+      for (int j = y; j < y + CUBE_SIZE; j++)
+        mobilizedDirt += calculateCellMobilizedDirt(matrix, i, j);
 
     return mobilizedDirt;
   }
@@ -189,7 +188,8 @@ public class TrabalhoPratico {
       }
     }
 
-    System.out.printf("(x,y)=(%d,%d)%n", maxX, maxY);
+    // ! Refactor (no printing inside the method)
+    System.out.printf("coordenadas do cubo: (%d,%d)", maxX, maxY);
     return minMobilizedDirt;
   }
 
@@ -226,9 +226,8 @@ public class TrabalhoPratico {
 
     System.out.println("i)");
     // ! Dúvida: Percorrer 3x a matrix ou passar tudo por referencia?
-
     int mobilizedDirt = getBestDirtRatioToFloodCube(matrix);
-    System.out.println(mobilizedDirt);
+    System.out.printf(", terra a mobilizar: %d m2%n", mobilizedDirt);
 
     System.out.println("j)");
     int dryColumn = getEasternDryColumn(matrix);
