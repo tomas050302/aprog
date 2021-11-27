@@ -126,7 +126,7 @@ public class TrabalhoPratico {
   private static void printFloodingIncrements(int[] increments) {
     printIncrementsHeader();
     for (int i = 0; i < increments.length; i++) {
-      System.out.printf("%18d | %18d%n", i, increments[i]);
+      System.out.printf("%18d | %18d%n", i + 1, increments[i]);
     }
     System.out.println("");
   }
