@@ -83,12 +83,6 @@ public class exH_bonus {
     }
   }
 
-  private static void printArray(int[] arr) {
-    for (int i : arr) {
-      System.out.println(i);
-    }
-  }
-
   private static void performAction(int[] sequence, String action, int nTimes) {
     nTimes %= sequence.length;
 

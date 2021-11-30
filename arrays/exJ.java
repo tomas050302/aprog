@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class exJ {
   static Scanner scanner = new Scanner(System.in);
 
-  static final int MAX_VALUES = 100;
+  static final int MAX_VALUES = 500;
   static final int TOP = 3;
 
   private static int getData(String[] employeesNames, int[] employeesSalaries) {
@@ -77,10 +77,12 @@ public class exJ {
     return finalArray;
   }
 
-  private static void getTopEmployees(String[] employeesNames, int[] employeesSalaries, String[] topEmployeesNames,
+  private static int getTopEmployees(String[] employeesNames, int[] employeesSalaries, String[] topEmployeesNames,
       int[] topEmployeesSalaries, int nOfEmployees) {
 
-    for (int i = 0; i < TOP; i++) {
+    int topEmployees = 0;
+    int startingEmployees = nOfEmployees;
+    for (int i = 0; i < TOP && i < startingEmployees; i++) {
       int topSalaryIndex = getTopSalaryIndex(employeesNames, employeesSalaries, nOfEmployees);
 
       topEmployeesNames[i] = employeesNames[topSalaryIndex];
@@ -88,7 +90,12 @@ public class exJ {
 
       employeesNames = removeIndexFromArray(employeesNames, topSalaryIndex, nOfEmployees);
       employeesSalaries = removeIndexFromArray(employeesSalaries, topSalaryIndex, nOfEmployees);
+      nOfEmployees--;
+
+      topEmployees++;
     }
+
+    return topEmployees;
   }
 
   public static void main(String[] args) {
@@ -101,11 +108,11 @@ public class exJ {
       String[] topEmployeesNames = new String[TOP];
       int[] topEmployeesSalaries = new int[TOP];
 
-      getTopEmployees(employeesNames, employeesSalaries, topEmployeesNames, topEmployeesSalaries, nOfEmployees);
+      int topEmployees = getTopEmployees(employeesNames, employeesSalaries, topEmployeesNames, topEmployeesSalaries,
+          nOfEmployees);
 
-      for (int i = 0; i < topEmployeesNames.length; i++) {
+      for (int i = 0; i < topEmployees; i++)
         System.out.printf("#%d:%s:%s%n", i + 1, topEmployeesNames[i], topEmployeesSalaries[i]);
-      }
     }
   }
 }
