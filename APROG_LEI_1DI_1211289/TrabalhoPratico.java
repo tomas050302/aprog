@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class TrabalhoPratico {
   static final int CUBE_SIZE = 3;
+  static final int MOBILIZED_DIRT_INDEX = 0;
+  static final int MAX_X_INDEX = 1;
+  static final int MAX_Y_INDEX = 2;
 
   private static int[][] readInput() {
     Scanner scanner = new Scanner(System.in);
@@ -169,7 +172,7 @@ public class TrabalhoPratico {
     return mobilizedDirt;
   }
 
-  private static int getBestDirtRatioToFloodCube(int[][] matrix) {
+  private static int[] getBestDirtRatioToFloodCube(int[][] matrix) {
     int minMobilizedDirt = calculateMobilizedDirtToFloodCube(matrix, 0, 0);
     int maxX = 0, maxY = 0;
 
@@ -179,7 +182,7 @@ public class TrabalhoPratico {
         int mobilizedDirt = calculateMobilizedDirtToFloodCube(matrix, i, j);
 
         // As is used > instead of >=, the selected cell is both the
-        // northen-western one
+        // northern-western one
         if (mobilizedDirt < minMobilizedDirt) {
           minMobilizedDirt = mobilizedDirt;
           maxX = i;
@@ -188,9 +191,7 @@ public class TrabalhoPratico {
       }
     }
 
-    // ! Refactor (no printing inside the method)
-    System.out.printf("coordenadas do cubo: (%d,%d)", maxX, maxY);
-    return minMobilizedDirt;
+    return new int[] { minMobilizedDirt, maxX, maxY };
   }
 
   public static void main(String[] args) {
@@ -225,9 +226,10 @@ public class TrabalhoPratico {
     printFloodingIncrements(increments);
 
     System.out.println("i)");
-    // ! Dúvida: Percorrer 3x a matrix ou passar tudo por referencia?
-    int mobilizedDirt = getBestDirtRatioToFloodCube(matrix);
-    System.out.printf(", terra a mobilizar: %d m2%n", mobilizedDirt);
+    int[] data = getBestDirtRatioToFloodCube(matrix);
+
+    System.out.printf("coordenadas do cubo: (%d,%d), terra a mobilizar: %d m2%n", data[MAX_X_INDEX], data[MAX_Y_INDEX],
+        data[MOBILIZED_DIRT_INDEX]);
 
     System.out.println("j)");
     int dryColumn = getEasternDryColumn(matrix);
