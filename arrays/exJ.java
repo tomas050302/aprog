@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class exJ {
   static Scanner scanner = new Scanner(System.in);
 
-  static final int MAX_VALUES = 500;
+  static final int MAX_VALUES = 100;
   static final int TOP = 3;
 
   private static int getData(String[] employeesNames, int[] employeesSalaries) {
@@ -20,7 +20,7 @@ public class exJ {
 
         nOfEmployees++;
       }
-    } while (!employeeName.equals("FIM") && nOfEmployees < MAX_VALUES);
+    } while (!employeeName.equals("FIM") && nOfEmployees < employeesSalaries.length);
 
     return nOfEmployees;
   }
@@ -82,6 +82,7 @@ public class exJ {
 
     int topEmployees = 0;
     int startingEmployees = nOfEmployees;
+
     for (int i = 0; i < TOP && i < startingEmployees; i++) {
       int topSalaryIndex = getTopSalaryIndex(employeesNames, employeesSalaries, nOfEmployees);
 
@@ -98,21 +99,23 @@ public class exJ {
     return topEmployees;
   }
 
+  private static void printTopEmployees(String[] topEmployeesNames, int[] topEmployeesSalaries, int topEmployees) {
+    for (int i = 0; i < topEmployees; i++)
+      System.out.printf("#%d:%s:%s%n", i + 1, topEmployeesNames[i], topEmployeesSalaries[i]);
+  }
+
   public static void main(String[] args) {
     String[] employeesNames = new String[MAX_VALUES];
     int[] employeesSalaries = new int[MAX_VALUES];
 
     int nOfEmployees = getData(employeesNames, employeesSalaries);
 
-    if (nOfEmployees > 0) {
-      String[] topEmployeesNames = new String[TOP];
-      int[] topEmployeesSalaries = new int[TOP];
+    String[] topEmployeesNames = new String[TOP];
+    int[] topEmployeesSalaries = new int[TOP];
 
-      int topEmployees = getTopEmployees(employeesNames, employeesSalaries, topEmployeesNames, topEmployeesSalaries,
-          nOfEmployees);
+    int topEmployees = getTopEmployees(employeesNames, employeesSalaries, topEmployeesNames, topEmployeesSalaries,
+        nOfEmployees);
 
-      for (int i = 0; i < topEmployees; i++)
-        System.out.printf("#%d:%s:%s%n", i + 1, topEmployeesNames[i], topEmployeesSalaries[i]);
-    }
+    printTopEmployees(topEmployeesNames, topEmployeesSalaries, topEmployees);
   }
 }
