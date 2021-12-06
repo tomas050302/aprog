@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class TrabalhoPratico {
@@ -6,8 +8,8 @@ public class TrabalhoPratico {
   static final int MAX_X_INDEX = 1;
   static final int MAX_Y_INDEX = 2;
 
-  private static int[][] readInput() {
-    Scanner scanner = new Scanner(System.in);
+  private static int[][] readInput() throws FileNotFoundException {
+    Scanner scanner = new Scanner(new File("sampleInput1.txt"));
 
     // Read the description of the terrain
     scanner.nextLine();
@@ -194,7 +196,7 @@ public class TrabalhoPratico {
     return new int[] { minMobilizedDirt, maxX, maxY };
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
     int[][] matrix = readInput();
 
     System.out.println("b)");
